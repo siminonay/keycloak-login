@@ -1,0 +1,13 @@
+version: '3'
+services:
+  keycloak:
+    image: keycloak-custom:latest
+    build: .
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - 8080:8080
+    volumes:
+      - ./custom-authenticator/target:/opt/jboss/keycloak/standalone/deployments
+      - ./custom-authenticator/src/main/resources/theme/base:/opt/jboss/keycloak/themes/base
